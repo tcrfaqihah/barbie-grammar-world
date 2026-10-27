@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbie World English Quest | Designed by Teacher Faqihah</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        barbie: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        },
+                        glam: {
+                            pink: '#ff69b4',
+                            hot: '#ff1493',
+                            purple: '#c084fc',
+                            lightPurple: '#f3e8ff',
+                            gold: '#fbbf24',
+                        }
+                    },
+                    fontFamily: {
+                        barbie: ['Fredoka', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sparkle-bg {
+            background-color: #fdf2f8;
+            background-image: radial-gradient(#f472b6 0.75px, transparent 0.75px), radial-gradient(#c084fc 0.75px, #fdf2f8 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+        .barbie-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #f472b6;
+            box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.3), 0 8px 10px -6px rgba(244, 114, 182, 0.2);
+        }
+        .barbie-btn {
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+        }
+        .barbie-btn:hover {
+            background: linear-gradient(135deg, #ff1493 0%, #e11d48 100%);
+            transform: translateY(-2px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #fbcfe8;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #f43f5e;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="sparkle-bg text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-barbie-300 selection:text-barbie-900">
+
+    <!-- TOP HEADER / NAV BAR -->
+    <header class="bg-gradient-to-r from-barbie-500 via-glam-pink to-purple-500 border-b-4 border-yellow-300 sticky top-0 z-40 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full bg-white border-2 border-yellow-300 flex items-center justify-center text-barbie-600 shadow-md text-2xl transform hover:scale-110 transition">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <div>
+                    <h1 class="font-barbie text-xl md:text-2xl text-white tracking-wide drop-shadow-md">
+                        BARBIE'S FORM 3 ENGLISH QUEST
+                    </h1>
+                    <p class="text-xs text-barbie-100 font-medium">
+                        Fun Vocabulary & Information Transfer • Designed by Teacher Faqihah
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tab Switcher & User Status -->
+            <div class="flex items-center gap-3">
+                <div id="currentUserBadge" class="hidden sm:flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/40 px-3 py-1.5 rounded-full text-xs text-white font-bold">
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-300 animate-ping"></span>
+                    <span id="displayStudentName">Glam Explorer</span>
+                    <span>|</span>
+                    <span id="displayStudentClass" class="text-yellow-200">Class</span>
+                </div>
+
+                <nav class="flex bg-white/30 backdrop-blur-md p-1 rounded-2xl border border-white/40">
+                    <button id="tabStudentBtn" onclick="switchTab('student')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition bg-white text-barbie-600 shadow-md">
+                        <i class="fa-solid fa-wand-magic-sparkles text-glam-hot"></i> Student Quest
+                    </button>
+                    <button id="tabTeacherBtn" onclick="switchTab('teacher')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white hover:bg-white/20 transition">
+                        <i class="fa-solid fa-clipboard-user"></i> Teacher Records
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
+
+        <!-- ==================== STUDENT SECTION ==================== -->
+        <section id="studentSection" class="space-y-6">
+
+            <!-- SCORE & PROGRESS BAR -->
+            <div class="bg-white/90 border-2 border-barbie-300 rounded-2xl p-4 shadow-md flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="bg-barbie-100 border border-barbie-300 px-4 py-2 rounded-xl text-center">
+                        <span class="text-[11px] font-bold text-barbie-700 uppercase block">Sparkle Points</span>
+                        <span id="displayTotalPoints" class="font-barbie text-2xl text-barbie-600">0 Points</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-600 block mb-1">Quest Progress</span>
+                        <div class="w-40 sm:w-60 bg-barbie-100 h-3 rounded-full overflow-hidden border border-barbie-200">
+                            <div id="questProgressBar" class="bg-gradient-to-r from-glam-pink to-purple-500 h-full w-0 transition-all duration-500"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Quick Jump Buttons -->
+                <div class="flex items-center gap-2">
+                    <button onclick="scrollToTask('task1')" class="px-3 py-1.5 bg-barbie-100 hover:bg-barbie-200 text-barbie-700 border border-barbie-300 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-book-bookmark"></i> Task 1: Vocabulary
+                    </button>
+                    <button onclick="scrollToTask('task2')" class="px-3 py-1.5 bg-purple-100 hover:bg-purple-200 text-purple-700 border border-purple-300 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-pen"></i> Task 2: Info Transfer
+                    </button>
+                </div>
+            </div>
+
+            <!-- TASK 1: VOCABULARY CHALLENGE (3 SETS x 10 WORDS) -->
+            <div id="task1" class="barbie-card rounded-3xl p-5 sm:p-7 space-y-6">
+                
+                <div class="border-b-2 border-barbie-200 pb-4 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-barbie-500 text-white flex items-center justify-center text-xl font-bold shadow">
+                            1
+                        </div>
+                        <div>
+                            <h2 class="font-barbie text-xl sm:text-2xl text-barbie-600">
+                                TASK 1: BARBIE'S VOCABULARY MATCH (30 WORDS)
+                            </h2>
+                            <p class="text-xs text-slate-600">
+                                Identify the correct 10 vocabulary terms for each theme! Earn 10 points per correct answer.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Vocabulary Set Tabs -->
+                    <div class="flex gap-2">
+                        <button id="vocabTab1" onclick="switchVocabSet(1)" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-barbie-500 text-white shadow">
+                            <i class="fa-solid fa-house-laptop"></i> Set 1: Smart House
+                        </button>
+                        <button id="vocabTab2" onclick="switchVocabSet(2)" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-barbie-100 text-barbie-700 hover:bg-barbie-200">
+                            <i class="fa-solid fa-person-snowboarding"></i> Set 2: Extreme Sport
+                        </button>
+                        <button id="vocabTab3" onclick="switchVocabSet(3)" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-barbie-100 text-barbie-700 hover:bg-barbie-200">
+                            <i class="fa-solid fa-cart-shopping"></i> Set 3: Online Shopping
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VOCABULARY SET CONTAINER -->
+                <div id="vocabContentContainer" class="space-y-4">
+                    <!-- Dynamic rendering of 10 items for the selected set -->
+                </div>
+
+                <div class="flex justify-between items-center border-t border-barbie-200 pt-4">
+                    <span id="vocabSetScoreText" class="text-xs font-bold text-barbie-700 bg-barbie-100 px-3 py-1.5 rounded-xl">
+                        Set 1 Score: 0 / 10
+                    </span>
+                    <button onclick="checkCurrentVocabSet()" class="px-6 py-2.5 barbie-btn text-white font-barbie text-sm rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-check-double"></i> CHECK SET ANSWERS
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!-- TASK 2: INFORMATION TRANSFER (3 READING SETS) -->
+            <div id="task2" class="barbie-card rounded-3xl p-5 sm:p-7 space-y-6">
+                
+                <div class="border-b-2 border-barbie-200 pb-4 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-purple-600 text-white flex items-center justify-center text-xl font-bold shadow">
+                            2
+                        </div>
+                        <div>
+                            <h2 class="font-barbie text-xl sm:text-2xl text-purple-700">
+                                TASK 2: INFORMATION TRANSFER (READING & EXTRACTING)
+                            </h2>
+                            <p class="text-xs text-slate-600">
+                                Read Barbie's short stories and complete the transfer fields. <span class="font-bold text-rose-600">Rule: NO MORE THAN 3 WORDS per answer!</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Info Transfer Set Tabs -->
+                    <div class="flex gap-2">
+                        <button id="infoTab1" onclick="switchInfoSet(1)" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-purple-600 text-white shadow">
+                            <i class="fa-solid fa-home"></i> Text 1: Smart Home
+                        </button>
+                        <button id="infoTab2" onclick="switchInfoSet(2)" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-purple-100 text-purple-700 hover:bg-purple-200">
+                            <i class="fa-solid fa-mountain"></i> Text 2: Extreme Adventure
+                        </button>
+                        <button id="infoTab3" onclick="switchInfoSet(3)" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-purple-100 text-purple-700 hover:bg-purple-200">
+                            <i class="fa-solid fa-bag-shopping"></i> Text 3: Glam Boutique
+                        </button>
+                    </div>
+                </div>
+
+                <!-- READING TEXT DISPLAY CARD -->
+                <div class="bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 border-2 border-purple-200 rounded-2xl p-5 shadow-sm">
+                    <div class="flex items-center gap-2 text-purple-700 font-barbie text-lg mb-2">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span id="infoStoryTitle">Barbie's Dream Smart Home</span>
+                    </div>
+                    <p id="infoStoryPassage" class="text-xs sm:text-sm text-slate-700 leading-relaxed italic bg-white/80 p-4 rounded-xl border border-purple-100">
+                        <!-- Dynamic text content -->
+                    </p>
+                </div>
+
+                <!-- TRANSFER QUESTIONS FORM -->
+                <div class="space-y-4">
+                    <h3 class="font-barbie text-base text-slate-700 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-line text-barbie-500"></i> COMPLETE THE INFORMATION FIELDS (MAX 3 WORDS EACH):
+                    </h3>
+
+                    <div id="infoQuestionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Dynamic fields rendered here -->
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-between items-center border-t border-purple-200 pt-4 gap-3">
+                    <div class="text-xs text-slate-500 italic">
+                        <i class="fa-solid fa-circle-info text-barbie-500 mr-1"></i> Answers will be validated instantly. Words count limit is enforced.
+                    </div>
+                    <button onclick="submitInfoTransferSet()" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-barbie-500 hover:from-purple-500 hover:to-barbie-400 text-white font-barbie text-sm rounded-xl transition flex items-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-paper-plane"></i> SUBMIT INFO TRANSFER
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- FINAL SUBMIT ALL & FINISH -->
+            <div class="text-center pt-4">
+                <button onclick="finishFullQuest()" class="px-8 py-4 barbie-btn text-white font-barbie text-xl rounded-2xl shadow-xl transform hover:scale-105 transition border-2 border-yellow-200">
+                    <i class="fa-solid fa-trophy mr-2 text-yellow-300"></i> SUBMIT ALL TASKS TO TEACHER FAQIHAH
+                </button>
+            </div>
+
+        </section>
+
+        <!-- ==================== TEACHER SECTION ==================== -->
+        <section id="teacherSection" class="hidden space-y-6">
+
+            <div class="barbie-card rounded-3xl p-6 shadow-xl space-y-6">
+                
+                <div class="flex flex-wrap items-center justify-between border-b-2 border-barbie-200 pb-4 gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-barbie-500 text-white flex items-center justify-center text-2xl shadow">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-barbie text-2xl text-barbie-600">TEACHER FAQIHAH'S ADMIN RECORDS</h2>
+                            <p class="text-xs text-slate-600">Class Performance, Vocabulary Scores & Information Transfer Answers</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div id="teacherAuthNotice" class="text-xs bg-rose-100 border border-rose-300 text-rose-700 px-3 py-1.5 rounded-xl flex items-center gap-2 font-bold">
+                            <i class="fa-solid fa-lock"></i> Protected Access
+                        </div>
+                        <button id="unlockTeacherBtn" onclick="promptTeacherPassword()" class="px-4 py-2 bg-barbie-500 hover:bg-barbie-600 text-white text-xs font-bold rounded-xl transition shadow">
+                            Unlock Full Admin Access
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ANALYTICS CARDS -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="bg-barbie-50 border border-barbie-200 rounded-2xl p-4 text-center">
+                        <span class="text-[11px] font-bold text-barbie-700 uppercase block mb-1">Total Submissions</span>
+                        <span id="statTotalSubmissions" class="font-barbie text-3xl text-barbie-600">0</span>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-200 rounded-2xl p-4 text-center">
+                        <span class="text-[11px] font-bold text-purple-700 uppercase block mb-1">Avg Total Score</span>
+                        <span id="statAvgScore" class="font-barbie text-3xl text-purple-600">0 pts</span>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 text-center">
+                        <span class="text-[11px] font-bold text-yellow-700 uppercase block mb-1">Top Class</span>
+                        <span id="statTopClass" class="font-barbie text-xl text-yellow-600">1 Ibnu Sina</span>
+                    </div>
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center">
+                        <span class="text-[11px] font-bold text-emerald-700 uppercase block mb-1">Max Score Possible</span>
+                        <span class="font-barbie text-3xl text-emerald-600">450 pts</span>
+                    </div>
+                </div>
+
+                <!-- CONTROLS & FILTER BAR -->
+                <div class="bg-pink-50/80 border border-barbie-200 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <label class="text-xs font-bold text-barbie-800 uppercase">Filter Class:</label>
+                        <select id="classFilterSelect" onchange="renderTeacherRecords()" class="bg-white border border-barbie-300 rounded-xl px-3 py-1.5 text-xs text-slate-700 font-bold focus:outline-none focus:border-barbie-500 shadow-sm">
+                            <option value="ALL">All Classes</option>
+                            <option value="1 Ibnu Sina">1 Ibnu Sina</option>
+                            <option value="1 Al Batani">1 Al Batani</option>
+                            <option value="2 Al Farabi">2 Al Farabi</option>
+                            <option value="3 Ibnu Sina">3 Ibnu Sina</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="exportRecordsCSV()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                            <i class="fa-solid fa-file-csv"></i> Export CSV
+                        </button>
+                        <button onclick="clearAllTeacherRecords()" class="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow">
+                            <i class="fa-solid fa-trash-can"></i> Reset Records
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RECORDS DATA TABLE -->
+                <div class="bg-white border-2 border-barbie-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gradient-to-r from-barbie-500 to-purple-600 text-white text-xs font-barbie uppercase tracking-wider">
+                                    <th class="p-3.5 text-center">Rank</th>
+                                    <th class="p-3.5">Student Name</th>
+                                    <th class="p-3.5">Class</th>
+                                    <th class="p-3.5 text-center">Vocab Score (300)</th>
+                                    <th class="p-3.5 text-center">Info Transfer Score (150)</th>
+                                    <th class="p-3.5 text-center">Total Points</th>
+                                    <th class="p-3.5">Sample Answer Log</th>
+                                    <th class="p-3.5 text-center">Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teacherRecordsTableBody" class="divide-y divide-barbie-100 text-xs text-slate-700">
+                                <!-- Dynamic Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white/80 backdrop-blur-md border-t border-barbie-200 py-4 text-center text-xs text-barbie-800 font-semibold mt-6">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div>
+                <span>Barbie World Form 3 English Quest • Vocabulary & Information Transfer</span>
+            </div>
+            <div class="font-barbie text-barbie-600 text-sm tracking-wide">
+                Designed by Teacher Faqihah
+            </div>
+        </div>
+    </footer>
+
+    <!-- WELCOME / REGISTRATION MODAL -->
+    <div id="welcomeModal" class="fixed inset-0 bg-barbie-900/60 backdrop-blur-md flex items-center justify-center p-4 z-50">
+        <div class="bg-white border-4 border-barbie-300 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative text-slate-800">
+            
+            <div class="text-center mb-6">
+                <div class="w-20 h-20 bg-gradient-to-tr from-barbie-500 to-glam-hot rounded-full mx-auto flex items-center justify-center text-white text-4xl shadow-lg border-4 border-yellow-200 mb-3 animate-bounce">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <h2 class="font-barbie text-2xl sm:text-3xl text-barbie-600 tracking-wide">
+                    WELCOME TO BARBIE'S ENGLISH QUEST!
+                </h2>
+                <p class="text-xs text-barbie-700 font-bold mt-1">
+                    Form 3 English Learning • Designed by Teacher Faqihah
+                </p>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" onsubmit="submitRegistration(event)" class="space-y-4">
+                
+                <div>
+                    <label class="block text-xs font-bold text-barbie-800 uppercase tracking-wider mb-1">
+                        Student Full Name:
+                    </label>
+                    <input type="text" id="regStudentName" placeholder="Enter your full name..." required
+                        class="w-full bg-barbie-50 border border-barbie-300 rounded-2xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-barbie-500 font-medium">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-barbie-800 uppercase tracking-wider mb-1">
+                        Select Your Class:
+                    </label>
+                    <select id="regStudentClass" required
+                        class="w-full bg-barbie-50 border border-barbie-300 rounded-2xl px-4 py-3 text-sm text-slate-800 font-bold focus:outline-none focus:border-barbie-500">
+                        <option value="" disabled selected>-- Select Class --</option>
+                        <option value="1 Ibnu Sina">1 Ibnu Sina</option>
+                        <option value="1 Al Batani">1 Al Batani</option>
+                        <option value="2 Al Farabi">2 Al Farabi</option>
+                        <option value="3 Ibnu Sina">3 Ibnu Sina</option>
+                    </select>
+                </div>
+
+                <!-- Instructions -->
+                <div class="bg-barbie-50 border border-barbie-200 rounded-2xl p-4 text-xs space-y-2">
+                    <h4 class="font-barbie text-barbie-700 text-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-heart text-barbie-500"></i> YOUR LESSON MISSIONS:
+                    </h4>
+                    <ul class="list-disc list-inside space-y-1 text-slate-600 leading-relaxed">
+                        <li><b>Task 1 (Vocabulary):</b> Match 30 vocabulary items across 3 Barbie themes (Smart House, Extreme Sport, Online Shopping).</li>
+                        <li><b>Task 2 (Info Transfer):</b> Read 3 short Barbie stories and type extracted answers.</li>
+                        <li><b>Strict Constraint:</b> Maximum <b>3 words</b> per information transfer answer!</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 barbie-btn text-white font-barbie text-lg rounded-2xl shadow-xl transition transform hover:scale-[1.02]">
+                    START BARBIE QUEST <i class="fa-solid fa-sparkles ml-1"></i>
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- MAIN APP JAVASCRIPT LOGIC -->
+    <script>
+        /* ==========================================================================
+           1. DATA STRUCTURES (TASKS 1 & 2 DATA)
+           ========================================================================== */
+        const APP_STATE = {
+            studentName: '',
+            studentClass: '',
+            currentVocabSet: 1,
+            currentInfoSet: 1,
+            vocabAnswers: { 1: {}, 2: {}, 3: {} },
+            infoAnswers: { 1: {}, 2: {}, 3: {} },
+            teacherUnlocked: false
+        };
+
+        // TASK 1: VOCABULARY DATA (3 SETS x 10 ITEMS = 30 ITEMS)
+        const VOCAB_DATA = {
+            1: {
+                title: "Barbie's Smart House",
+                icon: "fa-house-laptop",
+                items: [
+                    { id: 'v1_1', word: 'automated lighting', icon: 'fa-lightbulb', hint: 'Lights that switch on or change brightness automatically.' },
+                    { id: 'v1_2', word: 'voice assistant', icon: 'fa-microphone', hint: 'A smart device that obeys spoken commands (e.g. Alexa, Siri).' },
+                    { id: 'v1_3', word: 'smart thermostat', icon: 'fa-temperature-half', hint: 'A device that controls room temperature automatically.' },
+                    { id: 'v1_4', word: 'motion sensor', icon: 'fa-person-walking-arrow-right', hint: 'Detects movement inside or outside the house.' },
+                    { id: 'v1_5', word: 'surveillance camera', icon: 'fa-video', hint: 'Records video footage to keep Barbie’s Dreamhouse safe.' },
+                    { id: 'v1_6', word: 'solar panels', icon: 'fa-solar-panel', hint: 'Converts sunlight into clean green electricity.' },
+                    { id: 'v1_7', word: 'smart lock', icon: 'fa-lock', hint: 'Unlocks doors using a smartphone app or passcode.' },
+                    { id: 'v1_8', word: 'robotic vacuum', icon: 'fa-robot', hint: 'Cleans floors automatically without human effort.' },
+                    { id: 'v1_9', word: 'energy monitor', icon: 'fa-chart-line', hint: 'Tracks total electricity usage in real-time.' },
+                    { id: 'v1_10', word: 'connected appliance', icon: 'fa-wifi', hint: 'Home appliance connected to Wi-Fi for remote control.' }
+                ]
+            },
+            2: {
+                title: "Barbie's Extreme Sports",
+                icon: "fa-person-snowboarding",
+                items: [
+                    { id: 'v2_1', word: 'skydiving', icon: 'fa-parachute-box', hint: 'Jumping from an airplane with a parachute.' },
+                    { id: 'v2_2', word: 'white-water rafting', icon: 'fa-water', hint: 'Riding down fast river rapids on an inflatable boat.' },
+                    { id: 'v2_3', word: 'bungee jumping', icon: 'fa-arrow-down-up-across-line', hint: 'Jumping from a high bridge secured by an elastic cord.' },
+                    { id: 'v2_4', word: 'rock climbing', icon: 'fa-mountain font-bold', hint: 'Ascending steep natural rock walls.' },
+                    { id: 'v2_5', word: 'paragliding', icon: 'fa-wind', hint: 'Gliding through the air attached to a wide canopy.' },
+                    { id: 'v2_6', word: 'skateboarding', icon: 'fa-shoe-prints', hint: 'Riding and performing tricks on a short board with wheels.' },
+                    { id: 'v2_7', word: 'snowboarding', icon: 'fa-snowflake', hint: 'Sliding down snow-covered slopes on a single board.' },
+                    { id: 'v2_8', word: 'mountain biking', icon: 'fa-bicycle', hint: 'Riding bicycles off-road across rough mountain terrain.' },
+                    { id: 'v2_9', word: 'jet skiing', icon: 'fa-sailboat', hint: 'Riding a high-speed personal watercraft on water.' },
+                    { id: 'v2_10', word: 'cliff diving', icon: 'fa-person-falling', hint: 'Jumping into deep ocean water from high coastal cliffs.' }
+                ]
+            },
+            3: {
+                title: "Barbie's Online Shopping",
+                icon: "fa-cart-shopping",
+                items: [
+                    { id: 'v3_1', word: 'shopping cart', icon: 'fa-cart-flatbed', hint: 'A virtual list holding items before purchasing.' },
+                    { id: 'v3_2', word: 'digital checkout', icon: 'fa-cash-register', hint: 'The final step where you pay for online items.' },
+                    { id: 'v3_3', word: 'customer review', icon: 'fa-star', hint: 'Feedback or star ratings written by buyers.' },
+                    { id: 'v3_4', word: 'tracking number', icon: 'fa-barcode', hint: 'A unique code used to check parcel delivery location.' },
+                    { id: 'v3_5', word: 'discount coupon', icon: 'fa-ticket', hint: 'A promo code that reduces the original price.' },
+                    { id: 'v3_6', word: 'payment gateway', icon: 'fa-credit-card', hint: 'Secure service authorizing online card payments.' },
+                    { id: 'v3_7', word: 'wishlist', icon: 'fa-heart', hint: 'A saved list of favorite items you want to buy later.' },
+                    { id: 'v3_8', word: 'free shipping', icon: 'fa-truck-fast', hint: 'Delivery service provided at no extra cost.' },
+                    { id: 'v3_9', word: 'return policy', icon: 'fa-rotate-left', hint: 'Rules explaining how to return unsatisfactory products.' },
+                    { id: 'v3_10', word: 'virtual storefront', icon: 'fa-store', hint: 'The online webpage displaying products for sale.' }
+                ]
+            }
+        };
+
+        // TASK 2: INFORMATION TRANSFER DATA (3 SETS x 5 QUESTIONS EACH = 15 FIELDS)
+        const INFO_TRANSFER_DATA = {
+            1: {
+                title: "Barbie's Dream Smart Home",
+                passage: "Barbie recently upgraded her Malibu Dreamhouse into a fully automated smart home. Her favorite feature is the voice assistant, which controls pink ambient lighting and plays upbeat pop music. To save green energy, solar panels were installed on the roof last summer. Security is managed using a smart lock and high-definition surveillance cameras around the garden. For everyday cleaning, Barbie relies on a robotic vacuum that operates automatically every morning at 8:00 AM.",
+                questions: [
+                    { id: 'i1_1', prompt: "Favorite smart home feature:", answer: "voice assistant" },
+                    { id: 'i1_2', prompt: "Roof energy source:", answer: "solar panels" },
+                    { id: 'i1_3', prompt: "Security devices used:", answer: "surveillance cameras" },
+                    { id: 'i1_4', prompt: "Automatic floor cleaner:", answer: "robotic vacuum" },
+                    { id: 'i1_5', prompt: "Daily cleaning time:", answer: "8:00 AM" }
+                ]
+            },
+            2: {
+                title: "Barbie's Extreme Adventure Club",
+                passage: "During school holidays, Barbie and her friends join the Malibu Extreme Adventure Club. Last weekend, they tried white-water rafting down the turbulent Kampar River in Perak. Barbie wore a bright pink helmet and a high-buoyancy life jacket for maximum safety. Next month, the team plans to experience skydiving over tropical beach coastal lines. Barbie advises all beginners to always double-check safety harnesses before attempting high-altitude extreme sports.",
+                questions: [
+                    { id: 'i2_1', prompt: "Adventure club name:", answer: "Malibu Extreme Adventure" },
+                    { id: 'i2_2', prompt: "Water sport completed:", answer: "white-water rafting" },
+                    { id: 'i2_3', prompt: "Rafting location:", answer: "Kampar River" },
+                    { id: 'i2_4', prompt: "Next planned sport:", answer: "skydiving" },
+                    { id: 'i2_5', prompt: "Crucial equipment check:", answer: "safety harnesses" }
+                ]
+            },
+            3: {
+                title: "Barbie's Glam Online Boutique",
+                passage: "Barbie launched her new online fashion store called Glam Boutique last Friday. Customers can browse fashionable dresses in a virtual storefront and save items to a personal wishlist. Payment is processed quickly using a secure payment gateway. To celebrate the opening week, Barbie offers free shipping on all orders over RM50. Parcels are delivered within two working days, and buyers receive a unique tracking number via SMS.",
+                questions: [
+                    { id: 'i3_1', prompt: "Online fashion store name:", answer: "Glam Boutique" },
+                    { id: 'i3_2', prompt: "Where items are saved:", answer: "personal wishlist" },
+                    { id: 'i3_3', prompt: "Special promo benefit:", answer: "free shipping" },
+                    { id: 'i3_4', prompt: "Minimum order for promo:", answer: "RM50" },
+                    { id: 'i3_5', prompt: "Sent via SMS for tracking:", answer: "tracking number" }
+                ]
+            }
+        };
+
+        // SAMPLE TEACHER DATA FOR INSTANT PRE-POPULATION
+        const MOCK_TEACHER_RECORDS = [
+            {
+                studentName: 'Amina Zahra',
+                studentClass: '1 Ibnu Sina',
+                vocabScore: 300,
+                infoScore: 150,
+                totalPoints: 450,
+                sampleAnswer: 'voice assistant / solar panels',
+                timestamp: '2026-10-27 10:15'
+            },
+            {
+                studentName: 'Nur Farhana',
+                studentClass: '1 Ibnu Sina',
+                vocabScore: 280,
+                infoScore: 140,
+                totalPoints: 420,
+                sampleAnswer: 'voice assistant / skydiving',
+                timestamp: '2026-10-27 10:20'
+            },
+            {
+                studentName: 'Muhammad Irfan',
+                studentClass: '1 Al Batani',
+                vocabScore: 250,
+                infoScore: 130,
+                totalPoints: 380,
+                sampleAnswer: 'solar panels / safety harnesses',
+                timestamp: '2026-10-27 11:05'
+            },
+            {
+                studentName: 'Siti Sarah',
+                studentClass: '2 Al Farabi',
+                vocabScore: 290,
+                infoScore: 150,
+                totalPoints: 440,
+                sampleAnswer: 'robotic vacuum / Glam Boutique',
+                timestamp: '2026-10-27 11:45'
+            },
+            {
+                studentName: 'Danial Haziq',
+                studentClass: '3 Ibnu Sina',
+                vocabScore: 270,
+                infoScore: 120,
+                totalPoints: 390,
+                sampleAnswer: 'tracking number / RM50',
+                timestamp: '2026-10-27 14:30'
+            }
+        ];
+
+        /* ==========================================================================
+           2. RENDERERS & TASK LOGIC
+           ========================================================================== */
+
+        // TASK 1: Render Vocabulary Set
+        function renderVocabSet(setNum) {
+            APP_STATE.currentVocabSet = setNum;
+            const set = VOCAB_DATA[setNum];
+            const container = document.getElementById('vocabContentContainer');
+
+            // Collect all word options for select dropdown
+            const allWords = set.items.map(i => i.word).sort();
+
+            container.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${set.items.map((item, index) => {
+                        const savedVal = APP_STATE.vocabAnswers[setNum][item.id] || '';
+                        return `
+                            <div class="bg-barbie-50 border border-barbie-200 rounded-2xl p-4 flex flex-col justify-between shadow-sm hover:border-barbie-400 transition">
+                                <div>
+                                    <div class="flex items-center gap-3 mb-2">
+                                        <div class="w-9 h-9 rounded-xl bg-barbie-500 text-white flex items-center justify-center text-base font-bold shadow-sm">
+                                            <i class="fa-solid ${item.icon}"></i>
+                                        </div>
+                                        <span class="font-barbie text-slate-700 text-sm">Item ${index + 1}</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mb-3 bg-white p-2.5 rounded-xl border border-barbie-100 font-medium">
+                                        <i class="fa-solid fa-quote-left text-barbie-300 mr-1"></i> ${item.hint}
+                                    </p>
+                                </div>
+                                <div>
+                                    <label class="text-[11px] font-bold text-barbie-700 uppercase block mb-1">Select Matching Vocabulary:</label>
+                                    <select onchange="saveVocabAnswer('${setNum}', '${item.id}', this.value)" class="w-full bg-white border border-barbie-300 rounded-xl px-3 py-2 text-xs text-slate-800 font-bold focus:outline-none focus:border-barbie-500 shadow-sm">
+                                        <option value="">-- Select Word --</option>
+                                        ${allWords.map(w => `<option value="${w}" ${savedVal === w ? 'selected' : ''}>${w}</option>`).join('')}
+                                    </select>
+                                    <div id="feedback_${item.id}" class="text-[11px] font-bold mt-1.5 hidden"></div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+
+            updateVocabTabStyles(setNum);
+            calculateTotalPoints();
+        }
+
+        function saveVocabAnswer(setNum, itemId, val) {
+            APP_STATE.vocabAnswers[setNum][itemId] = val;
+            calculateTotalPoints();
+        }
+
+        function updateVocabTabStyles(activeSet) {
+            for (let i = 1; i <= 3; i++) {
+                const btn = document.getElementById(`vocabTab${i}`);
+                if (i === activeSet) {
+                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold transition bg-barbie-500 text-white shadow";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold transition bg-barbie-100 text-barbie-700 hover:bg-barbie-200";
+                }
+            }
+        }
+
+        function switchVocabSet(setNum) {
+            renderVocabSet(setNum);
+        }
+
+        function checkCurrentVocabSet() {
+            const setNum = APP_STATE.currentVocabSet;
+            const set = VOCAB_DATA[setNum];
+            let setScore = 0;
+
+            set.items.forEach(item => {
+                const userVal = APP_STATE.vocabAnswers[setNum][item.id] || '';
+                const feedbackEl = document.getElementById(`feedback_${item.id}`);
+
+                if (feedbackEl) {
+                    feedbackEl.classList.remove('hidden');
+                    if (userVal.toLowerCase() === item.word.toLowerCase()) {
+                        feedbackEl.className = 'text-[11px] font-bold mt-1.5 text-emerald-600';
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> Correct! (+10 pts)`;
+                        setScore += 10;
+                    } else if (!userVal) {
+                        feedbackEl.className = 'text-[11px] font-bold mt-1.5 text-amber-600';
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Please select an answer.`;
+                    } else {
+                        feedbackEl.className = 'text-[11px] font-bold mt-1.5 text-rose-600';
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Incorrect. Answer is: "${item.word}"`;
+                    }
+                }
+            });
+
+            document.getElementById('vocabSetScoreText').textContent = `Set ${setNum} Score: ${setScore} / 100`;
+            calculateTotalPoints();
+        }
+
+
+        // TASK 2: Render Info Transfer Set
+        function renderInfoSet(setNum) {
+            APP_STATE.currentInfoSet = setNum;
+            const set = INFO_TRANSFER_DATA[setNum];
+
+            document.getElementById('infoStoryTitle').textContent = set.title;
+            document.getElementById('infoStoryPassage').textContent = set.passage;
+
+            const container = document.getElementById('infoQuestionsContainer');
+            container.innerHTML = set.questions.map((q, index) => {
+                const savedVal = APP_STATE.infoAnswers[setNum][q.id] || '';
+                const wordCount = countWords(savedVal);
+                const isOverLimit = wordCount > 3;
+
+                return `
+                    <div class="bg-white border border-purple-200 rounded-2xl p-4 shadow-sm hover:border-purple-300 transition">
+                        <label class="text-xs font-bold text-purple-900 block mb-1">
+                            ${index + 1}. ${q.prompt}
+                        </label>
+                        <div class="relative">
+                            <input type="text" 
+                                value="${savedVal}"
+                                oninput="handleInfoInput('${setNum}', '${q.id}', this.value)"
+                                placeholder="Type answer (Max 3 words)..."
+                                class="w-full bg-purple-50/50 border ${isOverLimit ? 'border-rose-500' : 'border-purple-200'} rounded-xl px-3 py-2 text-xs text-slate-800 font-semibold focus:outline-none focus:border-purple-500">
+                            <span class="absolute right-3 top-2 text-[10px] font-bold ${isOverLimit ? 'text-rose-600 font-extrabold' : 'text-slate-400'}">
+                                ${wordCount}/3 words
+                            </span>
+                        </div>
+                        <div id="wordWarning_${q.id}" class="text-[11px] font-bold mt-1 ${isOverLimit ? 'text-rose-600' : 'hidden'}">
+                            ⚠️ Warning: Answer must not exceed 3 words!
+                        </div>
+                        <div id="infoFeedback_${q.id}" class="text-[11px] font-bold mt-1 hidden"></div>
+                    </div>
+                `;
+            }).join('');
+
+            updateInfoTabStyles(setNum);
+        }
+
+        function countWords(str) {
+            const trimmed = str.trim();
+            if (!trimmed) return 0;
+            return trimmed.split(/\s+/).length;
+        }
+
+        function handleInfoInput(setNum, qId, val) {
+            APP_STATE.infoAnswers[setNum][qId] = val;
+            const wordCount = countWords(val);
+            const warningEl = document.getElementById(`wordWarning_${qId}`);
+
+            if (warningEl) {
+                if (wordCount > 3) {
+                    warningEl.classList.remove('hidden');
+                } else {
+                    warningEl.classList.add('hidden');
+                }
+            }
+
+            calculateTotalPoints();
+        }
+
+        function updateInfoTabStyles(activeSet) {
+            for (let i = 1; i <= 3; i++) {
+                const btn = document.getElementById(`infoTab${i}`);
+                if (i === activeSet) {
+                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold transition bg-purple-600 text-white shadow";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold transition bg-purple-100 text-purple-700 hover:bg-purple-200";
+                }
+            }
+        }
+
+        function switchInfoSet(setNum) {
+            renderInfoSet(setNum);
+        }
+
+        function submitInfoTransferSet() {
+            const setNum = APP_STATE.currentInfoSet;
+            const set = INFO_TRANSFER_DATA[setNum];
+
+            set.questions.forEach(q => {
+                const userVal = (APP_STATE.infoAnswers[setNum][q.id] || '').trim().toLowerCase();
+                const expected = q.answer.toLowerCase();
+                const feedbackEl = document.getElementById(`infoFeedback_${q.id}`);
+
+                if (feedbackEl) {
+                    feedbackEl.classList.remove('hidden');
+                    if (countWords(userVal) > 3) {
+                        feedbackEl.className = 'text-[11px] font-bold mt-1 text-rose-600';
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Over 3 words limit! Answer invalid.`;
+                    } else if (userVal === expected || userVal.includes(expected)) {
+                        feedbackEl.className = 'text-[11px] font-bold mt-1 text-emerald-600';
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-circle-check"></i> Excellent transfer! (+10 pts)`;
+                    } else if (!userVal) {
+                        feedbackEl.className = 'text-[11px] font-bold mt-1 text-amber-600';
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Field empty.`;
+                    } else {
+                        feedbackEl.className = 'text-[11px] font-bold mt-1 text-purple-600';
+                        feedbackEl.innerHTML = `<i class="fa-solid fa-info-circle"></i> Suggested text phrase: "${q.answer}"`;
+                    }
+                }
+            });
+
+            calculateTotalPoints();
+        }
+
+        /* ==========================================================================
+           3. SCORE CALCULATIONS & COMPLETE QUEST
+           ========================================================================== */
+        function calculateTotalPoints() {
+            let vocabScore = 0;
+            let infoScore = 0;
+
+            // Calculate Vocab Score
+            for (let s = 1; s <= 3; s++) {
+                VOCAB_DATA[s].items.forEach(item => {
+                    const userVal = APP_STATE.vocabAnswers[s][item.id] || '';
+                    if (userVal.toLowerCase() === item.word.toLowerCase()) {
+                        vocabScore += 10;
+                    }
+                });
+            }
+
+            // Calculate Info Transfer Score
+            for (let s = 1; s <= 3; s++) {
+                INFO_TRANSFER_DATA[s].questions.forEach(q => {
+                    const userVal = (APP_STATE.infoAnswers[s][q.id] || '').trim().toLowerCase();
+                    if (userVal && countWords(userVal) <= 3) {
+                        if (userVal === q.answer.toLowerCase() || userVal.includes(q.answer.toLowerCase())) {
+                            infoScore += 10;
+                        }
+                    }
+                });
+            }
+
+            const total = vocabScore + infoScore;
+            document.getElementById('displayTotalPoints').textContent = `${total} Points`;
+
+            const maxPoints = 450;
+            const pct = Math.min(100, Math.round((total / maxPoints) * 100));
+            document.getElementById('questProgressBar').style.width = `${pct}%`;
+
+            return { vocabScore, infoScore, total };
+        }
+
+        function finishFullQuest() {
+            if (!APP_STATE.studentName) {
+                document.getElementById('welcomeModal').classList.remove('hidden');
+                return;
+            }
+
+            const scores = calculateTotalPoints();
+
+            saveRunToTeacherRecords(scores.vocabScore, scores.infoScore, scores.total);
+
+            alert(`🎉 Amazing Job, ${APP_STATE.studentName}! Your final score of ${scores.total} points has been submitted to Teacher Faqihah!`);
+            switchTab('teacher');
+        }
+
+        /* ==========================================================================
+           4. TEACHER RECORD & DASHBOARD LOGIC
+           ========================================================================== */
+        function getStoredRecords() {
+            const stored = localStorage.getItem('teacher_faqihah_barbie_records');
+            if (stored) {
+                try {
+                    return JSON.parse(stored);
+                } catch(e) {
+                    return MOCK_TEACHER_RECORDS;
+                }
+            }
+            localStorage.setItem('teacher_faqihah_barbie_records', JSON.stringify(MOCK_TEACHER_RECORDS));
+            return MOCK_TEACHER_RECORDS;
+        }
+
+        function saveRunToTeacherRecords(vScore, iScore, total) {
+            const records = getStoredRecords();
+            const dateStr = new Date().toISOString().replace('T', ' ').substring(0, 16);
+
+            // Extract sample answer
+            const sample = APP_STATE.infoAnswers[1]['i1_1'] || 'voice assistant';
+
+            records.push({
+                studentName: APP_STATE.studentName,
+                studentClass: APP_STATE.studentClass,
+                vocabScore: vScore,
+                infoScore: iScore,
+                totalPoints: total,
+                sampleAnswer: sample,
+                timestamp: dateStr
+            });
+
+            localStorage.setItem('teacher_faqihah_barbie_records', JSON.stringify(records));
+            renderTeacherRecords();
+        }
+
+        function renderTeacherRecords() {
+            const records = getStoredRecords();
+            const filterClass = document.getElementById('classFilterSelect').value;
+
+            let filtered = records;
+            if (filterClass !== 'ALL') {
+                filtered = records.filter(r => r.studentClass === filterClass);
+            }
+
+            filtered.sort((a, b) => b.totalPoints - a.totalPoints);
+
+            document.getElementById('statTotalSubmissions').textContent = filtered.length;
+
+            const avg = filtered.length > 0 
+                ? Math.round(filtered.reduce((acc, r) => acc + r.totalPoints, 0) / filtered.length) 
+                : 0;
+            document.getElementById('statAvgScore').textContent = `${avg} pts`;
+
+            const tbody = document.getElementById('teacherRecordsTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="p-6 text-center text-slate-400 italic">
+                            No student records found for class ${filterClass}.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((rec, index) => {
+                let rankBadge = `<span class="font-barbie text-slate-400">#${index + 1}</span>`;
+                if (index === 0) rankBadge = `<span class="text-amber-500 font-barbie text-sm">👑 1st</span>`;
+                else if (index === 1) rankBadge = `<span class="text-slate-400 font-barbie text-sm">🥈 2nd</span>`;
+                else if (index === 2) rankBadge = `<span class="text-amber-700 font-barbie text-sm">🥉 3rd</span>`;
+
+                return `
+                    <tr class="hover:bg-barbie-50/50 transition">
+                        <td class="p-3.5 text-center">${rankBadge}</td>
+                        <td class="p-3.5 font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-sparkles text-barbie-500"></i> ${escapeHTML(rec.studentName)}
+                        </td>
+                        <td class="p-3.5">
+                            <span class="bg-purple-100 text-purple-700 border border-purple-200 px-2.5 py-1 rounded-full text-[11px] font-bold">
+                                ${escapeHTML(rec.studentClass)}
+                            </span>
+                        </td>
+                        <td class="p-3.5 text-center font-bold text-barbie-600">${rec.vocabScore} / 300</td>
+                        <td class="p-3.5 text-center font-bold text-purple-600">${rec.infoScore} / 150</td>
+                        <td class="p-3.5 text-center font-barbie text-barbie-600 text-base">${rec.totalPoints} pts</td>
+                        <td class="p-3.5 text-slate-600 italic text-[11px] max-w-xs truncate" title="${escapeHTML(rec.sampleAnswer)}">
+                            "${escapeHTML(rec.sampleAnswer)}"
+                        </td>
+                        <td class="p-3.5 text-center text-slate-400 text-[11px] font-mono">${rec.timestamp || '-'}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function promptTeacherPassword() {
+            const password = prompt("Teacher Faqihah Passcode (Hint: faqihah123):");
+            if (password === 'faqihah123') {
+                APP_STATE.teacherUnlocked = true;
+                document.getElementById('teacherAuthNotice').className = 'text-xs bg-emerald-100 border border-emerald-300 text-emerald-700 px-3 py-1.5 rounded-xl flex items-center gap-2 font-bold';
+                document.getElementById('teacherAuthNotice').innerHTML = `<i class="fa-solid fa-unlock text-emerald-600"></i> Full Admin Access Unlocked`;
+                document.getElementById('unlockTeacherBtn').classList.add('hidden');
+                alert("Welcome Teacher Faqihah! Admin view unlocked.");
+            } else if (password !== null) {
+                alert("Incorrect password. Use 'faqihah123'.");
+            }
+        }
+
+        function exportRecordsCSV() {
+            const records = getStoredRecords();
+            if (records.length === 0) {
+                alert("No records to export!");
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,Student Name,Class,Vocab Score,Info Score,Total Points,Sample Answer,Timestamp\n";
+            records.forEach(r => {
+                csvContent += `"${r.studentName}","${r.studentClass}",${r.vocabScore},${r.infoScore},${r.totalPoints},"${r.sampleAnswer.replace(/"/g, '""')}","${r.timestamp}"\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Teacher_Faqihah_Barbie_Records_${new Date().toISOString().substring(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function clearAllTeacherRecords() {
+            if (confirm("Reset all student records? This action cannot be undone.")) {
+                localStorage.removeItem('teacher_faqihah_barbie_records');
+                renderTeacherRecords();
+                alert("Records reset completed.");
+            }
+        }
+
+        /* ==========================================================================
+           5. GENERAL UI CONTROLLERS
+           ========================================================================== */
+        function switchTab(tab) {
+            const studentSec = document.getElementById('studentSection');
+            const teacherSec = document.getElementById('teacherSection');
+            const studentBtn = document.getElementById('tabStudentBtn');
+            const teacherBtn = document.getElementById('tabTeacherBtn');
+
+            if (tab === 'student') {
+                studentSec.classList.remove('hidden');
+                teacherSec.classList.add('hidden');
+                studentBtn.className = "flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition bg-white text-barbie-600 shadow-md";
+                teacherBtn.className = "flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white hover:bg-white/20 transition";
+            } else {
+                studentSec.classList.add('hidden');
+                teacherSec.classList.remove('hidden');
+                teacherBtn.className = "flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition bg-white text-barbie-600 shadow-md";
+                studentBtn.className = "flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white hover:bg-white/20 transition";
+                renderTeacherRecords();
+            }
+        }
+
+        function scrollToTask(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitRegistration(e) {
+            e.preventDefault();
+            const name = document.getElementById('regStudentName').value.trim();
+            const cls = document.getElementById('regStudentClass').value;
+
+            if (!name || !cls) return;
+
+            APP_STATE.studentName = name;
+            APP_STATE.studentClass = cls;
+
+            document.getElementById('displayStudentName').textContent = name;
+            document.getElementById('displayStudentClass').textContent = cls;
+            document.getElementById('currentUserBadge').classList.remove('hidden');
+
+            document.getElementById('welcomeModal').classList.add('hidden');
+        }
+
+        function escapeHTML(str) {
+            return String(str || '').replace(/[&<>"']/g, function (m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[m];
+            });
+        }
+
+        // Initialize App
+        window.onload = function () {
+            renderVocabSet(1);
+            renderInfoSet(1);
+            getStoredRecords();
+        };
+    </script>
+</body>
+</html>
